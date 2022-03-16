@@ -1,0 +1,30 @@
+[
+    {
+        "title": "服务市场",
+        "name": "home",
+        "path": "/",
+        "ssr": true,
+        "ajax": [
+            {
+                "path": "/home/info"
+            },
+            {
+                "path": "/home/getProductConf"
+            }
+        ]
+    },
+    {
+        "title": "服务市场",
+        "name": "home",
+        "path": "/comp1",
+        "ssr": true,
+        "ajax": [
+            {
+                "path": "/home/info"
+            },
+            {
+                "path": "/home/getProductConf"
+            }
+        ]
+    }
+]

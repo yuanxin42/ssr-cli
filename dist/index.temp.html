@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>{{title}}</title>
+</head>
+
+<body>
+    <!--vue-ssr-outlet-->
+    <style>
+        html {
+            margin: 0;
+            padding: 0;
+        }
+
+        .low-ie-body {
+            font: 14px/1.5 "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "\5FAE\8F6F\96C5\9ED1", Arial, sans-serif;
+            background-color: #f7f7f7;
+        }
+
+        .low-ie-body * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .ie-header {
+            height: 88px;
+            border-bottom: 1px solid #eee;
+            width: 100%;
+            background-color: #fff;
+        }
+
+        .low-ie-body .ie-header {
+            display: block !important;
+        }
+
+        .ie-header-inner {
+            width: 990px;
+            margin: 0 auto;
+        }
+
+        .ie-logo {
+            margin-top: 19px;
+        }
+
+        .ie-warning {
+            padding: 0 40px 10px 40px;
+            text-align: center;
+            font-size: 32px;
+        }
+
+        .ie-warning-sub {
+            color: #666;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .ie-content {
+            width: 830px;
+            margin: 16px auto 40px;
+            background-color: #fff;
+            padding: 40px 80px 80px 80px;
+        }
+
+        .low-ie-body .ie-content {
+            display: block !important;
+        }
+
+        .ie-content-browser {
+            overflow: hidden;
+        }
+
+        .ie-content-browser-item {
+            width: 33%;
+            float: left;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .ie-content-browser-item p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .ie-content-browser-item a {
+            font-size: 16px;
+            color: #fff;
+            display: inline-block;
+            width: 180px;
+            height: 40px;
+            line-height: 40px;
+            background-color: #EF1F1F;
+            margin-top: 20px;
+            text-decoration: none;
+        }
+    </style>
+
+    <div class="ie-content" style="display: none;">
+        <h2 class="ie-warning">您使用的浏览器版本过低</h2>
+        <p class="ie-warning-sub">当前浏览器可能存在安全风险，为了保障您的采购体验，请立即升级浏览器！</p>
+        <div class="ie-content-browser">
+            <div class="ie-content-browser-item">
+                <p>Chrome 浏览器</p>
+                <a target="_blank" href="https://www.google.cn/chrome">下载</a>
+            </div>
+            <div class="ie-content-browser-item">
+                <p>微软 Edge 浏览器</p>
+                <a target="_blank" href="https://www.microsoft.com/zh-cn/edge">下载</a>
+            </div>
+            <div class="ie-content-browser-item">
+                <p>火狐浏览器</p>
+                <a target="_blank" href="http://www.firefox.com.cn/download/">下载</a>
+            </div>
+        </div>
+    </div>
+    <script>
+        function getIEVersion() {
+            var userAgent = navigator.userAgent; //取得浏览器的userAgent字符串
+            var isIE = userAgent.indexOf("compatible") > -1 && userAgent.indexOf("MSIE") > -1; //判断是否IE<11浏览器
+            var isEdge = userAgent.indexOf("Edge") > -1 && !isIE; //判断是否IE的Edge浏览器
+            var isIE11 = userAgent.indexOf('Trident') > -1 && userAgent.indexOf("rv:11.0") > -1;
+            if (isIE) {
+                var reIE = new RegExp("MSIE (\\d+\\.\\d+);");
+                reIE.test(userAgent);
+                var fIEVersion = parseFloat(RegExp["$1"]);
+                if (fIEVersion == 7) {
+                    return 7;
+                } else if (fIEVersion == 8) {
+                    return 8;
+                } else if (fIEVersion == 9) {
+                    return 9;
+                } else if (fIEVersion == 10) {
+                    return 10;
+                } else {
+                    return 6; //IE版本<=7
+                }
+            } else if (isEdge) {
+                return 'edge'; //edge
+            } else if (isIE11) {
+                return 11; //IE11
+            } else {
+                return -1; //不是ie浏览器
+            }
+        }
+        var iEVersion = getIEVersion();
+        if (iEVersion > 0 && iEVersion < 11 && iEVersion !== 'edge') {
+            document.body.removeChild(document.getElementById("app"));
+            document.body.className = 'low-ie-body';
+        }
+    </script>
+</body>
+
+</html>

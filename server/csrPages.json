@@ -1,0 +1,16 @@
+[
+    {
+        "title": "服务市场",
+        "name": "home",
+        "path": "/comp2",
+        "ssr": true,
+        "ajax": [
+            {
+                "path": "/home/info"
+            },
+            {
+                "path": "/home/getProductConf"
+            }
+        ]
+    }
+]
