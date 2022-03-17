@@ -1,11 +1,11 @@
 const path = require('path');
 const VueSSRClientPlugin = require('vue-server-renderer/client-plugin');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const VueSSRServerPlugin = require('vue-server-renderer/server-plugin');
-const { node } = require('webpack');
 
 const isDev = process.env.NODE_ENV === 'development';
 const isServer = process.env.VUE_APP_ENV === "server";
+
+const {devPort} = require("./config/index");
 
 module.exports = {
     outputDir: './dist',
@@ -35,8 +35,7 @@ module.exports = {
     },
     devServer: {
         contentBase: path.join(__dirname, './dist'),
-        port: "8888",
-        open: true,
+        port: devPort,
         hot: true,
         progress: false
     }

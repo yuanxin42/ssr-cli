@@ -446,3 +446,20 @@
   Note that the development build is not optimized.
   To create a production build, run npm run build.
 
+
+> ssr-cli@0.1.0 dev:client /Users/yuanxin/Desktop/vue-cli架构/ssr-cli
+> cross-env VUE_APP_ENV=client NODE_ENV=development vue-cli-service serve
+
+♥
+ INFO  Starting development server...
+(node:11633) DeprecationWarning: Tapable.plugin is deprecated. Use new API on `.hooks` instead
+ DONE  Compiled successfully in 1140ms1:46:07 ├F10: PM┤
+
+
+  App running at:
+  - Local:   http://localhost:8814/ 
+  - Network: http://172.24.3.35:8814/
+
+  Note that the development build is not optimized.
+  To create a production build, run npm run build.
+

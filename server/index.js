@@ -7,6 +7,8 @@ const {
     createBundleRenderer
 } = require('vue-server-renderer')
 const ssrPages = require("./ssrPages");
+
+const {ssrPort, ip, devPort} = require("../config/index");
 // const csrPages = require("./csrPages");
 
 const resolve = file => path.resolve(__dirname, file)
@@ -80,7 +82,8 @@ const handleRequest = ctx => {
 
 app.use(handleRequest);
 
-const port = process.env.PORT || 8089
-app.listen(port, '0.0.0.0', () => {
-    console.log(`server started at localhost:${port}`)
-})
+// 监听请求
+app.listen(ssrPort, ip,() => {
+    console.log(`Node Server: http://${ip}:${ssrPort}`);
+    console.log(`client Server: http://${ip}:${devPort}`);
+});
